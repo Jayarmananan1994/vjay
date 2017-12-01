@@ -31,7 +31,6 @@
 			var list = $firebaseArray(listRef);
 			return list.$add(data).then(function(ref){
 				var id = ref.key;
-				console.log("added record with id " + id);
 				return id;
 			});
 			
@@ -64,7 +63,6 @@
 				if(result==null){
 					result = (key1 === item.$id) ? val : null;
 				}
-			
 			});
 			return result;
 		}
@@ -73,31 +71,22 @@
 			var q = $q.defer();
 			var path = folder+"/"+filename;
 			var fileRef = firebase.storage().ref(path);
-			console.log(path);
-					var storage = $firebaseStorage(fileRef);
-					var uploadTask = storage.$put(file);
-					uploadTask.$progress(function(snapshot) {
-						var percentUploaded = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-						console.log(percentUploaded);
-						if(percentUploaded==100){
-							
-						}
-					}); 
-					 uploadTask.$complete(function(snapshot) {
-						console.log(snapshot.downloadURL);
-						alert(snapshot.downloadURL);
-						var fileObj = {};
-						fileObj.Name = filename;
-						fileObj.URL = snapshot.downloadURL;
-						q.resolve(snapshot.downloadURL);
-				
-				}); 
+			var storage = $firebaseStorage(fileRef);
+			var uploadTask = storage.$put(file);
+			uploadTask.$progress(function(snapshot) {
+				var percentUploaded = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+				console.log(percentUploaded);
+				if(percentUploaded==100){
+						
+				}
+			}); 
+			uploadTask.$complete(function(snapshot) {
+				var fileObj = {};
+				fileObj.Name = filename;
+				fileObj.URL = snapshot.downloadURL;
+				q.resolve(snapshot.downloadURL);				
+			}); 
 			return q.promise;
-		 }
-		 
-		 function deleteFile(){
-		 
-		 }
-		
+		 }		
 	}
 })();
