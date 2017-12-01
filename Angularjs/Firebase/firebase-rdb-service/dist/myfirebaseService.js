@@ -1,4 +1,5 @@
-angular
+(function(){
+	angular
 	.module('myfirebase.service',['firebase'])
 	.factory('MyFirebaseService',MyFirebaseService);
 	
@@ -6,7 +7,6 @@ angular
 	function MyFirebaseService($firebaseArray,$firebaseStorage,$q,$timeout){
 		const rootDBRef= firebase.database().ref();
 		var  services = {
-			getData : getData,
 			addObjectToDBList: addObjectToDBList,
 			getTableRows: getTableRows,
 			removeRowFromTable: removeRowFromTable,
@@ -15,10 +15,6 @@ angular
 		
 		return services;
 		////////////////////
-		
-		function getData(){
-			return "sample data";
-		}
 		
 		function getTableRows(ref){
 			var ref = rootDBRef.child(ref);
@@ -96,34 +92,12 @@ angular
 						q.resolve(snapshot.downloadURL);
 				
 				}); 
-					//q.resolve("some value")
 			return q.promise;
 		 }
 		 
 		 function deleteFile(){
 		 
 		 }
-		/* function uploadFile(folder,filename,file){
-			var q = $q.defer();
-			var path = folder+"/"+filename;
-			var fileRef = firebase.storage().ref(path);
-			console.log(path);
-			
-			var storage = $firebaseStorage(fileRef);
-			var uploadTask = storage.$put(file);
-			return uploadTask.$progress(function(snapshot) {
-				var percentUploaded = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-				console.log(percentUploaded);
-			}); 
-			return uploadTask.$complete(function(snapshot) {
-				console.log(snapshot.downloadURL);
-				alert(snapshot.downloadURL);
-				var fileObj = {};
-				fileObj.Name = filename;
-				fileObj.URL = snapshot.downloadURL;
-				q.resolve(snapshot.downloadURL);
-				
-			}); 
-			return q.promise;
-		} */
+		
 	}
+})();
