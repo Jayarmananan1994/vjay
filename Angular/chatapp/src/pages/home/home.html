@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+        Sign in      
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button full (click)="signinWithgoogle()" *ngIf="!isSignedIn" >Signin with google</button>
+  <button ion-button full (click)="navigateChat()" *ngIf="isSignedIn"  >Continue as {{currentEmail}}</button>
+  <button ion-button full (click)="signOut()" *ngIf="isSignedIn" >Logout</button>
+</ion-content>
