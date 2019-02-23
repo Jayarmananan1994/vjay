@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Unimoni contacts
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+ <ion-input clearInput placeholder="ENTER SEARCH TEXT" [(ngModel)]="searchText" (ngModelChange)="filterbySearchText()"></ion-input>
+  
+  <ion-card *ngFor="let item of filteredList" >
+      <ion-item href="#" class="activated"> 
+        <ion-label>{{item.extn+' - '+ item.name}}</ion-label>
+      </ion-item>
+      <ion-card-content>
+          <tr>
+            <td><b>Email - </b> {{item.emailId}}</td>
+          </tr>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
