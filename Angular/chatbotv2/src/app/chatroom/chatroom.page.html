@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-avatar slot="start">
+      <img [src]="recieveUser.photourl">
+    </ion-avatar>
+    <ion-title>{{recieveUser.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor ="let message of chatHistory">
+            {{message.msg}}
+        </ion-item>
+    </ion-list>
+    
+    <!-- <ion-card [ngClass]="{
+          'me-text' : (chat.author==='You'),
+          'other-text': (chat.author!=='You')
+      }" *ngFor="let chat of chatHistory">
+      <ion-card-header>
+        {{chat.author}}
+      </ion-card-header>
+      <ion-card-content>
+        {{chat.msg}}
+      </ion-card-content>
+    </ion-card> -->
+
+ 
+</ion-content>
+<ion-footer>
+  <form (ngSubmit)="chat()">
+    <ion-input type="text" [(ngModel)]="chatMsg" name="nickname" required=""></ion-input>
+    <ion-button size="small" shape="round" color="secondary" type="submit">Enter</ion-button>
+  </form>
+</ion-footer>

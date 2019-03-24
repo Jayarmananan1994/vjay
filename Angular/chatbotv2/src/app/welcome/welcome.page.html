@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>welcome</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button expand="block" (click)="signinWithgoogle()" *ngIf="!isSignedIn">Signin with google</ion-button>
+  <ion-button expand="block" (click)="navigateChat()" *ngIf="isSignedIn">Continue as {{currentEmail}}</ion-button>
+  <ion-button expand="block" (click)="signOut()" >Logout</ion-button>
+</ion-content>
