@@ -27,13 +27,13 @@ export class BruceService {
 
   talk(message: Message) {
     this.updateChat(message)
-    this.client.textRequest(message.msg)
-        .then(res => {
+   return this.client.textRequest(message.msg)
+        /*.then(res => {
            let reply = new Message()
            reply.author = this.bruceUser.name
            reply.msg = res.result.fulfillment.speech;
            this.updateChat(reply);
-        });
+        });*/
   }
 
 }

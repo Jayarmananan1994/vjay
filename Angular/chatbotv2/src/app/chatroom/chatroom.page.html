@@ -8,13 +8,13 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
+   <!-- <ion-list>
         <ion-item *ngFor ="let message of chatHistory">
             {{message.msg}}
         </ion-item>
-    </ion-list>
+    </ion-list>-->
     
-    <!-- <ion-card [ngClass]="{
+    <ion-card [ngClass]="{
           'me-text' : (chat.author==='You'),
           'other-text': (chat.author!=='You')
       }" *ngFor="let chat of chatHistory">
@@ -24,7 +24,7 @@
       <ion-card-content>
         {{chat.msg}}
       </ion-card-content>
-    </ion-card> -->
+    </ion-card>
 
  
 </ion-content>

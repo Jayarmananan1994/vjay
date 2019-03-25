@@ -16,16 +16,16 @@ import { Observable } from 'rxjs';
 export class ChatroomPage implements OnInit {
   //@ViewChild(Conten) public content:Conten ;
   public chatMsg: string;
-  
+
   public chatHistory: Message[] = []
   public recieveUser: User
   public isNormalChat: boolean = false
   botMessages: Observable<Message[]>
 
   constructor(private chatservice: ChatService, private authService: AuthService, private bruce: BruceService, private router: Router) {
-    console.log(this.chatservice.reciever) 
+    console.log(this.chatservice.reciever)
     this.recieveUser = this.chatservice.reciever
-    console.log(this.recieveUser) 
+    console.log(this.recieveUser)
   }
 
   ngOnInit() {
@@ -77,7 +77,7 @@ export class ChatroomPage implements OnInit {
 
   addChatObj() {
     let message = new Message();
-    message.author = this.authService.currentUser.displayName
+    message.author = 'You' //this.authService.currentUser.displayName
     message.authorEmail = this.authService.currentUser.email
     message.msg = this.chatMsg;
     message.media = null;
@@ -85,7 +85,13 @@ export class ChatroomPage implements OnInit {
     if (this.chatservice.reciever !== this.bruce.bruceUser) {
       this.chatservice.insertChat(message);
     } else {
-      this.bruce.talk(message)
+      this.chatHistory.push(message)
+      this.bruce.talk(message).then(res => {
+        let reply = new Message()
+        reply.author = this.bruce.bruceUser.name
+        reply.msg = res.result.fulfillment.speech;
+        this.chatHistory.push(reply)
+      });
     }
   }
 

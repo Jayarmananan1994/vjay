@@ -13,25 +13,27 @@ import { ChatService } from '../provider/chatservice/chat.service';
 })
 export class HomePage implements OnInit {
   userList: User[] = []
-  constructor(public router: Router, public userService: UserService, public bruceService: BruceService, private chatService : ChatService) {
+  constructor(public router: Router, public userService: UserService, public bruceService: BruceService, private chatService: ChatService) {
 
   }
 
   ngOnInit() {
     console.log(this.userService.signedInUser)
     if (this.userService.signedInUser == null) {
-       this.router.navigate(['welcome'])
-     }
+      this.router.navigate(['welcome'])
+    }
     this.populateUserList();
   }
 
   populateUserList() {
-   this.userList.push(this.bruceService.bruceUser)
+    this.userList.push(this.bruceService.bruceUser)
     this.userService.fetchUserList()
-      .snapshotChanges().subscribe(items => {
+      .snapshotChanges().subscribe(items => { 
         items.forEach(item => {
           let x = item.payload.toJSON() as User;
-          this.userList.push(x)
+          if (x.email !== this.userService.signedInUser.email) {
+            this.userList.push(x)
+          }
         })
       });
   }
@@ -39,9 +41,9 @@ export class HomePage implements OnInit {
 
   }
 
-  gotoChat(user : User) {
-    console.log("Goto chat : %O",user)
-    this.chatService.reciever= user
+  gotoChat(user: User) {
+    console.log("Goto chat : %O", user)
+    this.chatService.reciever = user
     this.router.navigate(['chatroom'])
   }
   signOut() {
