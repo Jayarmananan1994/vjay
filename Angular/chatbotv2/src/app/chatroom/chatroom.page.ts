@@ -24,20 +24,19 @@ export class ChatroomPage implements OnInit {
 
   constructor(private chatservice: ChatService, private authService: AuthService, private bruce: BruceService, private router: Router) {
     console.log(this.chatservice.reciever)
-    this.recieveUser = this.chatservice.reciever
+    if (this.chatservice.reciever != null) {
+      this.recieveUser = this.chatservice.reciever
+    } else {
+      this.router.navigate(['welcome'])
+    }
     console.log(this.recieveUser)
   }
 
   ngOnInit() {
-    let dummyMessage = new Message()
-    dummyMessage.msg = 'Dummy Message'
-    //this.chatHistory.push(dummyMessage)
     if (this.authService.authenticated && this.chatservice.reciever != null) {
       if (this.chatservice.reciever !== this.bruce.bruceUser) {
         this.initiateChatBox();
         this.isNormalChat = true
-      } else {
-        //this.initiateBotChat();
       }
     } else {
       this.router.navigate(['welcome'])
@@ -62,9 +61,6 @@ export class ChatroomPage implements OnInit {
           this.chatHistory.push(x as Message);
         });
         console.log('Chat history: %O', this.chatHistory)
-        // let dimensions = this.content.getContentDimensions();
-        // console.log(dimensions) 
-        // this.content.scrollTo(300, 4*dimensions.scrollHeight, 100);
       })
   }
 
@@ -77,7 +73,7 @@ export class ChatroomPage implements OnInit {
 
   addChatObj() {
     let message = new Message();
-    message.author = 'You' //this.authService.currentUser.displayName
+    message.author = this.authService.currentUser.displayName
     message.authorEmail = this.authService.currentUser.email
     message.msg = this.chatMsg;
     message.media = null;
@@ -85,6 +81,7 @@ export class ChatroomPage implements OnInit {
     if (this.chatservice.reciever !== this.bruce.bruceUser) {
       this.chatservice.insertChat(message);
     } else {
+      message.author = 'You'
       this.chatHistory.push(message)
       this.bruce.talk(message).then(res => {
         let reply = new Message()

@@ -14,7 +14,7 @@ export class WelcomePage implements OnInit {
   public currentEmail: string
   public isSignedIn = false;
 
-  constructor(public router: Router,public authService: AuthService, public userService: UserService) {
+  constructor(public router: Router, public authService: AuthService, public userService: UserService) {
 
   }
   ngOnInit() {
@@ -26,8 +26,11 @@ export class WelcomePage implements OnInit {
       console.log(state);
       this.currentEmail = (state == null) ? "" : state.email
       this.isSignedIn = (state == null) ? false : true;
-      let currentUser = this.userService.parseUser(state);
-      this.userService.signedInUser = currentUser
+      if (state !== null) {
+        let currentUser = this.userService.parseUser(state);
+        this.userService.signedInUser = currentUser
+      }
+
     });
 
   }
@@ -47,7 +50,7 @@ export class WelcomePage implements OnInit {
               isNewUser = false
             }
           })
-          if (isNewUser) {          
+          if (isNewUser) {
             this.userService.addUser(signedInUser)
           }
           this.userService.signedInUser = signedInUser
@@ -67,7 +70,7 @@ export class WelcomePage implements OnInit {
 
   }
 
-  navigateChat(){  
+  navigateChat() {
     this.router.navigate(['home']);
   }
 
