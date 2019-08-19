@@ -34,5 +34,4 @@ In implementation perspective, the below are implemented.
 
 
 
-![HeroWidget Demo](https://firebasestorage.googleapis.com/v0/b/placeholder-47ca3.appspot.com/o/short2.gif?alt=media&token=09e88edb-8ca3-46ba-bccb-5ba057df658f)
-
++<img src="/MyMDB.gif?raw=true" width="200px">
