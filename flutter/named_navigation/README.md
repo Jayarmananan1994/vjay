@@ -34,5 +34,5 @@ In implementation perspective, the below are implemented.
 
 
 
-![HeroWidget Demo](https://firebasestorage.googleapis.com/v0/b/placeholder-47ca3.appspot.com/o/MyMDB.gif?alt=media&token=b9a96029-262c-4b12-a568-101fcd26c6ff)
+![HeroWidget Demo](https://firebasestorage.googleapis.com/v0/b/placeholder-47ca3.appspot.com/o/MyMDBV1.gif?alt=media&token=83179bf1-320c-4b18-b291-207d5dc820f5)
 
