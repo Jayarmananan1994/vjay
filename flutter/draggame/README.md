@@ -2,15 +2,16 @@
 
 A new Flutter project.
 
-## Getting Started
+A simple Drag and Drop based Game using the dragNDrop Widget.
 
-This project is a starting point for a Flutter application.
+The Game works based on mapping the fruits emoji with the matching colors.For example Say Lemon with yellow, apple with Red.
 
-A few resources to get you started if this is your first Flutter project:
+# Extra
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+Audio Player library is used to give a sound on matching every emoji Fruit. Also Victory song will play on completing game. 
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+
+
+![Dragme Demo](https://firebasestorage.googleapis.com/v0/b/placeholder-47ca3.appspot.com/o/20190819_104004.gif?alt=media&token=2a5c19e4-18f7-4ce6-b9d3-5cbff10f732a)
+
+

@@ -1,30 +1,14 @@
 # pokemon_go
 
-A new Flutter project.
+A Flutter App to put the Hero animation in use. In Hero animation, an image in Screen 1 containing list of thumbnails will flies to next screen where it says more information about that image. This kind of animation often seen in Shopping apps. The data for the app is loaded over the dummy REST API.
 
-## Getting Started
+#Known Issue.
 
-This project is a starting point for a Flutter application.
+1. Need to improve the screen responsiveness by utilizing the async feature of dart.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+2. The image loading need to be graceful. 
 
 
 
-DEV Note:
-
-1. This app is to demonstrate the Hero widget in Flutter (Video link below)
-
-2. Iniital page contain list of Pokemon. Clicking on pokemon go to pokemon detail.
-
-
-Video :
-
-https://www.youtube.com/watch?v=Be9UH1kXFDw
+![HeroWidget Demo](https://firebasestorage.googleapis.com/v0/b/placeholder-47ca3.appspot.com/o/hero_in_action.gif?alt=media&token=f115840d-3b58-4b2d-b296-d48a8371e0b9)
 
