@@ -128,7 +128,7 @@ class Emoji extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: Container(
-        height: 50,
+        height: 100,
         padding: EdgeInsets.all(10),
         child: Text(
           emojiStr,
