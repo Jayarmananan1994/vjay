@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:named_navigation/model/MovieCast.dart';
 import 'package:named_navigation/appcostat.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-import 'package:named_navigation/tmdbconfig.dart';
+import 'package:named_navigation/common/service_locator.dart';
+import 'package:named_navigation/model/mymdb_movie.dart';
+import 'package:named_navigation/screens/peopleinfo/peopleinfo.dart';
+import 'package:named_navigation/service/movieservice/movie_service.dart';
 
 class CastList extends StatefulWidget {
   final int movieId;
+  final MyMDBType type;
 
-  CastList({@required this.movieId});
+  CastList({@required this.movieId, @required this.type});
 
   @override
   _CastListState createState() => _CastListState();
@@ -17,14 +17,13 @@ class CastList extends StatefulWidget {
 
 class _CastListState extends State<CastList>
     with AutomaticKeepAliveClientMixin<CastList> {
-  Future<List<Cast>> _loadingCasts;
+  MovieService service = locator<MovieService>();
 
   @override
   bool get wantKeepAlive => true;
 
   @override
   void initState() {
-    _loadingCasts = getCastList(); // only create the future once.
     super.initState();
   }
 
@@ -32,9 +31,11 @@ class _CastListState extends State<CastList>
   Widget build(BuildContext context) {
     super.build(context);
     return FutureBuilder(
-      future: getCastList(),
+      future: (widget.type == MyMDBType.MOVIE)
+          ? service.getMovieCast(widget.movieId)
+          : service.getTvCast(widget.movieId),
       builder: (BuildContext context, AsyncSnapshot snapShot) {
-        List<Cast> castList = snapShot.data;
+        List<MyMDBCast> castList = snapShot.data;
         if (castList == null) {
           return Center(
             child: CircularProgressIndicator(),
@@ -57,7 +58,7 @@ class _CastListState extends State<CastList>
                         subtitle: Text(cast.character,
                             style: TextStyle(color: Colors.white54)),
                         onTap: () {
-                          Navigator.pushNamed(context, PEOPLE_DETAIL,
+                          Navigator.pushNamed(context, PeopleInfo.PATH,
                               arguments: cast);
                         },
                       )),
@@ -66,27 +67,5 @@ class _CastListState extends State<CastList>
         }
       },
     );
-  }
-
-  Future<List<Cast>> getCastList() async {
-    var casturl = TMDB_BASE_URL +
-        'movie/${widget.movieId}/credits?api_key=' +
-        TMDB_APIKEY;
-
-    var castresdata = await http.get(casturl);
-    var castdecodedJson = jsonDecode(castresdata.body);
-    MovieCast castInfo = MovieCast.fromJson(castdecodedJson);
-    print('MovieCast parsed $castInfo');
-    List<Cast> castList = new List();
-    castInfo.cast.forEach((cast) {
-      if (cast.profilePath != null) {
-        cast.profilePath = (cast.profilePath.contains('w185'))
-            ? cast.profilePath
-            : TmdbConfig.baseUrl + 'w185' + cast.profilePath;
-        castList.add(cast);
-      }
-    });
-    print('cast list returnig $castList');
-    return castList;
   }
 }

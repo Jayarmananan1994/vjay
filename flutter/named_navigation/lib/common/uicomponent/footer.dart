@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:named_navigation/appcostat.dart';
+import 'package:named_navigation/screens/home/home.dart';
+import 'package:named_navigation/screens/search/searchpage.dart';
 
 class FooterNavBar extends StatelessWidget {
   @override
@@ -13,14 +15,14 @@ class FooterNavBar extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.home, color: Colors.white,),
             onPressed: () {
-              Navigator.pushNamed(context, HOME);
+              Navigator.pushNamed(context, HomePage.PATH);
               print('home');
             },
           ),
           IconButton(
             icon: Icon(Icons.search, color: Colors.white,),
             onPressed: () {
-              Navigator.pushNamed(context, SEARCH);
+              Navigator.pushNamed(context,SearchPage.PATH);
               print('search');
             },
           ),

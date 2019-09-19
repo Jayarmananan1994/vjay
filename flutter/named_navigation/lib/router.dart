@@ -1,39 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:named_navigation/downloads/downloads.dart';
-import 'package:named_navigation/home/home.dart';
-import 'package:named_navigation/model/people.dart';
-import 'package:named_navigation/movie-detail/movieDetail.dart';
-import 'package:named_navigation/nav_util/SlideNavRoute.dart';
-import 'package:named_navigation/peopleInfo/peopleInfo.dart';
-import 'package:named_navigation/search/search.dart';
-import 'package:named_navigation/settings/settings.dart';
+import 'package:named_navigation/screens/home/home.dart';
+import 'package:named_navigation/screens/movie-detail/movieDetail.dart';
+import 'package:named_navigation/screens/peopleinfo/peopleinfo.dart';
+import 'package:named_navigation/screens/search/searchpage.dart';
 import 'package:named_navigation/watchlist/watchlist.dart';
+
 import 'appcostat.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case HOME:
+    case HomePage.PATH:
       return MaterialPageRoute(builder: (context) => HomePage());
     case WATCH_LIST:
       //return SlideNavRoute(builder: (context) => MovieList());
       return MaterialPageRoute(builder: (context) => WatchList());
-    case DOWLOAD_LIST:
-      return MaterialPageRoute(builder: (context) => Downloads());
-    case SETTING:
-      return MaterialPageRoute(builder: (context) => Settings());
-    case SEARCH:
-      return MaterialPageRoute(builder: (context) => SearchPage());
-    case MOVIE_DETAIL:
+    //case DOWLOAD_LIST:
+    //  return MaterialPageRoute(builder: (context) => Downloads());
+    // case SETTING:
+    //   return MaterialPageRoute(builder: (context) => Settings());
+    case SearchPage.PATH:
+       return MaterialPageRoute(builder: (context) => SearchPage());
+    case MovieDetail.PATH:
       var movie = settings.arguments;
-      return MaterialPageRoute(
-          builder: (context) => MovieDetail(
-                movie: movie,
-              ));
-    case PEOPLE_DETAIL:
-      var cast = settings.arguments;
-      return MaterialPageRoute(
+      return MaterialPageRoute(builder: (context) => MovieDetail(movie: movie));
+   case PeopleInfo.PATH:
+       var cast = settings.arguments;
+       return MaterialPageRoute(
           builder: (context) => PeopleInfo(
-                cast: cast,
+               cast: cast,
               ));
     default:
       return MaterialPageRoute(builder: (context) => HomePage());

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:named_navigation/model/MovieInfo.dart';
-import 'package:named_navigation/movie-detail/CastList.dart';
-import 'package:named_navigation/movie-detail/similarmovies.dart';
+import 'package:named_navigation/model/mymdb_movie.dart';
+import 'package:named_navigation/screens/movie-detail/CastList.dart';
+import 'package:named_navigation/screens/movie-detail/similarmovies.dart';
+
 
 class MovieDetailTab extends StatefulWidget {
-  final MovieInfo movieInfo;
-  MovieDetailTab({Key key,@required this.movieInfo}): super(key: key);
+  final MyMDBMovie movie;
+  MovieDetailTab({Key key,@required this.movie}): super(key: key);
   @override
   _MovieDetailTabState createState() => _MovieDetailTabState();
 }
@@ -30,8 +31,8 @@ class _MovieDetailTabState extends State<MovieDetailTab> with AutomaticKeepAlive
                   height: 300.0,
                   child: TabBarView(
                     children: [
-                    CastList(movieId: widget.movieInfo.id,),
-                     SimilarMovies(movieId: widget.movieInfo.id,),
+                    CastList(movieId: widget.movie.id,type: widget.movie.myMDBType),
+                     SimilarMovies(movieId: widget.movie.id,type: widget.movie.myMDBType),
                     ],
                   ))
             ],

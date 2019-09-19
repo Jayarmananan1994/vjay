@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:named_navigation/tmdbconfig.dart';
-import 'router.dart' as router;
+import 'package:named_navigation/common/service_locator.dart';
+import 'package:named_navigation/screens/home/home.dart';
+
 import 'appcostat.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
+import 'router.dart' as router;
 
 void main() {
+  setupLocator();
   runApp(MyApp());
 }
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       onGenerateRoute: router.generateRoute,
-      initialRoute: HOME,
+      initialRoute: HomePage.PATH,
       theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: Color(APP_BODY_COLOR),
@@ -26,7 +27,12 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Roboto'),
               display1: TextStyle(
-                  color: Colors.white, fontSize: 17.0, fontFamily: 'Roboto', fontWeight: FontWeight.w600))),
+                  color: Colors.white,
+                  fontSize: 25.0,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w600),
+              subhead: TextStyle(color: Colors.white, fontSize: 13.0,),
+              body1: TextStyle(color: Colors.white, fontFamily: 'Roboto',fontSize: 15.0))),
     );
   }
 }

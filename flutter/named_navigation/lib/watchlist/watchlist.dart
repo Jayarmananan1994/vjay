@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:named_navigation/appcostat.dart';
-import 'package:named_navigation/common/footer.dart';
-import 'package:named_navigation/common/header.dart';
+import 'package:named_navigation/common/uicomponent/footer.dart';
+import 'package:named_navigation/common/uicomponent/header.dart';
 
 class WatchList extends StatelessWidget {
   @override
