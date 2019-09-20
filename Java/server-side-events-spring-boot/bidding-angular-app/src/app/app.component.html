@@ -1,0 +1,15 @@
+
+<!-- 
+<router-outlet></router-outlet>    -->
+
+<div *ngIf="!showReqList" style="padding: 19% 40%;width: 25%;margin: 0;text-align: center;" >
+    <p style="font-size: 25px">Submit your bidding request</p>
+    <input type="text" style="margin: 10px 5px;" placeholder="Enter product name" (input)="productName=$event.target.value"  /> <br>
+    <input type="text" style="margin: 10px 5px;" placeholder="Starting price" (input)="price=$event.target.value"  /> <br>
+    <button style="padding: 10px 60px;margin: 10px"  (click)="postNewBidRequest()"> Submit</button>
+    <button style="padding: 10px 60px;margin: 10px"  (click)="viewReqeust()"> View all Bid request</button>
+</div>
+
+<div *ngIf="showReqList">
+    <app-request-list></app-request-list>
+</div>

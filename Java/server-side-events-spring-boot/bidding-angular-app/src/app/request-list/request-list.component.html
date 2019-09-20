@@ -1,0 +1,24 @@
+<div>
+        <p> Reqeust List</p>
+        <table>
+            <tr>
+                <th>Product name</th>
+                <th>Initial price</th>
+                <th>Track</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let req of reqlist">
+                <td>{{req.productName }}</td>
+                <td>{{req.initialAmount }}</td>
+                <td><button (click)="trackReq(req)">Track</button></td>
+                <td><button (click)="makeaproposal(req)">Make a Dummy bidding proposal</button></td>
+            </tr>
+        </table>        
+        
+        <div *ngIf="proposalList.length>0">
+            <div><p>Proposals received for Bid Request </p></div>
+                <p *ngFor="let proposal of proposalList ">
+                    {{proposal.proposedBy}}  -  {{proposal.amount }} 
+                </p>
+        </div>
+</div>
